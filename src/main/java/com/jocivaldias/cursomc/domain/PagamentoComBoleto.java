@@ -1,5 +1,6 @@
 package com.jocivaldias.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jocivaldias.cursomc.domain.enums.EstadoPagamento;
 
 import javax.persistence.Entity;
@@ -10,7 +11,10 @@ import java.util.Date;
 public class PagamentoComBoleto extends Pagamento {
     private static final long serialVersionUID = 1L;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone="America/Sao_Paulo")
     private Date dataVencimento;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone="America/Sao_Paulo")
     private Date dataPagamento;
 
     public PagamentoComBoleto() {
