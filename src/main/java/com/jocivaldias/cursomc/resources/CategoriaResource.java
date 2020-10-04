@@ -1,7 +1,9 @@
 package com.jocivaldias.cursomc.resources;
 
 import com.jocivaldias.cursomc.domain.Categoria;
+import com.jocivaldias.cursomc.services.exception.DataIntegrityException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.jocivaldias.cursomc.services.CategoriaService;
@@ -35,6 +37,17 @@ public class CategoriaResource {
     public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id){
         obj.setId(id);
         obj = service.update(obj);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
+        try{
+            service.delete(id);
+        } catch(DataIntegrityViolationException e){
+            throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos.");
+        }
 
         return ResponseEntity.noContent().build();
     }
