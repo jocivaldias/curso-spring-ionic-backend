@@ -55,7 +55,7 @@ public class ClienteResource {
         try{
             service.delete(id);
         } catch(DataIntegrityViolationException e){
-            throw new DataIntegrityException("Não é possível excluir um porque há entidades relacionadas.");
+            throw new DataIntegrityException("Não é possível excluir um porque há pedidos relacionados.");
         }
 
         return ResponseEntity.noContent().build();
