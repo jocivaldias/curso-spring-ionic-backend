@@ -1,6 +1,7 @@
 package com.jocivaldias.cursomc.services;
 
 import com.jocivaldias.cursomc.domain.Categoria;
+import com.jocivaldias.cursomc.domain.Cliente;
 import com.jocivaldias.cursomc.dto.CategoriaDTO;
 import com.jocivaldias.cursomc.repositories.CategoriaRepository;
 import com.jocivaldias.cursomc.services.exception.ObjectNotFoundException;
@@ -26,15 +27,15 @@ public class CategoriaService {
         ));
     }
 
-    //Poderia juntar ambos (insert e update)
     public Categoria insert(Categoria obj){
         obj.setId(null);
         return repo.save(obj);
     }
 
     public Categoria update(Categoria obj) {
-        find(obj.getId());
-        return repo.save(obj);
+        Categoria newObj = find(obj.getId());
+        updateData(newObj, obj);
+        return repo.save(newObj);
     }
 
     public void delete(Integer id){
@@ -53,5 +54,9 @@ public class CategoriaService {
 
     public Categoria fromDTO(CategoriaDTO objDto){
         return new Categoria(objDto.getId(), objDto.getNome());
+    }
+
+    private void updateData(Categoria newObj, Categoria obj) {
+        newObj.setNome(obj.getNome());
     }
 }
