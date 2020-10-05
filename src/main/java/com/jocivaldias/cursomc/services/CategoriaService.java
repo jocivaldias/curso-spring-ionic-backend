@@ -1,6 +1,7 @@
 package com.jocivaldias.cursomc.services;
 
 import com.jocivaldias.cursomc.domain.Categoria;
+import com.jocivaldias.cursomc.dto.CategoriaDTO;
 import com.jocivaldias.cursomc.repositories.CategoriaRepository;
 import com.jocivaldias.cursomc.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,9 @@ public class CategoriaService {
     public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return repo.findAll(pageRequest);
+    }
+
+    public Categoria fromDTO(CategoriaDTO objDto){
+        return new Categoria(objDto.getId(), objDto.getNome());
     }
 }
