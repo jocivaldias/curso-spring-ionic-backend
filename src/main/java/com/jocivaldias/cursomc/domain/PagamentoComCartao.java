@@ -1,12 +1,12 @@
 package com.jocivaldias.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.jocivaldias.cursomc.domain.enums.EstadoPagamento;
 
 import javax.persistence.Entity;
-import java.io.Serializable;
-import java.util.Date;
 
 @Entity
+@JsonTypeName("pagamentoComCartao")
 public class PagamentoComCartao extends Pagamento {
     private static final long serialVersionUID = 1L;
 
