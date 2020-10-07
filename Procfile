@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT -Dspring.profiles.active=prod -Dspring.datasource.url=$CLEARDB_DATABASE_URL $JAVA_OPTS -jar target/cursomc-0.0.1-SNAPSHOT.jar
