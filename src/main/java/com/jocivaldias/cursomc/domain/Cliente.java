@@ -18,7 +18,7 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
-    //@Column(unique = true), aqui eu consigo tratar a excessão no banco. Lança exceções do Spring Data (Integrity)
+    @Column(unique = true)//aqui eu consigo tratar a excessão no banco. Lança exceções do Spring Data (Integrity)
     private String email;
     private String cpfOuCnpj;
     private Integer tipo;
