@@ -2,6 +2,7 @@ package com.jocivaldias.cursomc.config;
 
 import com.jocivaldias.cursomc.services.DBService;
 import com.jocivaldias.cursomc.services.EmailService;
+import com.jocivaldias.cursomc.services.MockEmailService;
 import com.jocivaldias.cursomc.services.SmtpEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +33,7 @@ public class DevConfig {
 
     @Bean
     public EmailService emailService(){
-        return new SmtpEmailService();
+        return new MockEmailService();
     }
 
 }
