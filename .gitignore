@@ -31,7 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-### PROPERTIES ###
-project.properties
-*.properties
