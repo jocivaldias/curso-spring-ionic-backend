@@ -41,7 +41,6 @@ public class Cliente implements Serializable {
     @CollectionTable(name="perfis")
     private Set<Integer> perfis = new HashSet<>();
 
-
     public Set<Perfil> getPerfis() {
         return this.perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
     }
