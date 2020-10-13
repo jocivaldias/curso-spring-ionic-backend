@@ -1,5 +1,6 @@
 package com.jocivaldias.cursomc.services;
 
+import com.jocivaldias.cursomc.domain.Cliente;
 import com.jocivaldias.cursomc.domain.Pedido;
 import org.springframework.mail.SimpleMailMessage;
 
@@ -13,5 +14,5 @@ public interface EmailService {
     void sendOrderConfirmationHtmlEmail(Pedido obj);
     void simpleHtmlEmail(MimeMessage msg);
 
-
+    void sendNewPasswordEmail(Cliente cliente, String newPass);
 }

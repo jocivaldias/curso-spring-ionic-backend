@@ -1,5 +1,6 @@
 package com.jocivaldias.cursomc.services;
 
+import com.jocivaldias.cursomc.domain.Cliente;
 import com.jocivaldias.cursomc.domain.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -65,6 +66,22 @@ public abstract class AbstractEmailService implements EmailService{
         mmh.setSentDate(new Date(System.currentTimeMillis()));
         mmh.setText(htmlFromTemplatePedido(obj));
         return mimeMessage;
+    }
+
+    @Override
+    public void sendNewPasswordEmail(Cliente cliente, String newPass){
+        SimpleMailMessage smm = prepareNewPasswordEmail(cliente, newPass);
+        simpleEmail(smm);
+    }
+
+    protected SimpleMailMessage prepareNewPasswordEmail(Cliente obj, String newPass) {
+        SimpleMailMessage smm = new SimpleMailMessage();
+        smm.setTo(obj.getEmail());
+        smm.setFrom(sender);
+        smm.setSubject("Solicitação de nova senha");
+        smm.setSentDate(new Date(System.currentTimeMillis()));
+        smm.setText("Nova senha: " + newPass);
+        return smm;
     }
 
 }
